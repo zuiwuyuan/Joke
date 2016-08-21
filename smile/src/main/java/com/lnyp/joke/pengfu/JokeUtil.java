@@ -67,7 +67,7 @@ public class JokeUtil {
                             dataBean.setHeight(height);
 
                         } else {
-                            String content = con_img_elements.text();
+                            String content = con_img_elements.text().replaceAll(" ", "\n");
                             dataBean.setContent(content);
                         }
 

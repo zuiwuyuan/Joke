@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFEFEF"
+    android:orientation="vertical"
+    tools:context="com.lnyp.joke.fragment.MainFragment">
+
+
+    <RelativeLayout
+        android:id="@+id/layoutTitleBar"
+        style="@style/title_bar_style">
+
+        <TextView
+            style="@style/title_bar_txt"
+            android:layout_centerInParent="true"
+            android:text="热门" />
+
+    </RelativeLayout>
+
+    <View style="@style/title_bar_bottom_divider" />
+
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listInspirations"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.baoyz.widget.PullRefreshLayout>
+
+
+</LinearLayout>

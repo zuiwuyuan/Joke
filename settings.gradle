@@ -1,1 +1,1 @@
-include ':smile'
+include ':smile', ':recyclerviewlibrary'

@@ -1,35 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.lnyp.joke.MainActivity">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-
-    <Button
+    <RelativeLayout
+        android:id="@+id/layoutNa"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClick1"
-        android:text="最新笑话" />
+        android:layout_height="46dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff">
 
-    <Button
+        <RadioGroup
+            android:id="@+id/rgBottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioBtn1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:drawableTop="@drawable/selector_main_bottom_tab1"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <RadioButton
+                android:id="@+id/radioBtn2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/selector_main_bottom_tab1"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <RadioButton
+                android:id="@+id/radioBtn3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/selector_main_bottom_tab1"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <RadioButton
+                android:id="@+id/radioBtn4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/selector_main_bottom_tab2"
+                android:gravity="center"
+                android:padding="10dp" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClick2"
-        android:text="捧腹段子" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/layoutNa" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClick3"
-        android:text="捧腹图片" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClick4"
-        android:text="捧腹图片" />
-
-
-</LinearLayout>
+</RelativeLayout>

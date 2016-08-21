@@ -1,105 +1,130 @@
 package com.lnyp.joke;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
-import com.lnyp.joke.http.HttpUtils;
-import com.lnyp.joke.pengfu.JokeApi;
-import com.lnyp.joke.pengfu.JokeUtil;
+import com.lnyp.joke.fragment.MainFragment;
+import com.lnyp.joke.fragment.QutuFragment;
+import com.lnyp.joke.fragment.ShenHuifuFragment;
+import com.lnyp.joke.fragment.XiaohuaFragment;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.radioBtn1)
+    public RadioButton radioBtn1;
+
+    @BindView(R.id.radioBtn2)
+    public RadioButton radioBtn2;
+
+    @BindView(R.id.radioBtn3)
+    public RadioButton radioBtn3;
+
+    private FragmentManager fragmentManager;
+
+    private MainFragment mainFragment = null;
+
+    private XiaohuaFragment xiaohuaFragment = null;
+
+    private QutuFragment qutuFragment = null;
+
+    private ShenHuifuFragment shenHuifuFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
+
+        initView();
     }
 
-    public void onClick1(View view) {
-
-        int page = 1;
-
-        final String url = JokeApi.PENGFU_NEW_JOKES + page + JokeApi.URL_SUFFIX;
-
-        HttpUtils.doGetAsyn(url, new HttpUtils.CallBack() {
-            @Override
-            public void onRequestComplete(String result) {
-
-                Document doc = Jsoup.parse(result);
-//                System.out.println(doc.toString());
-
-                if (doc != null) {
-                    JokeUtil jokeUtil = new JokeUtil();
-                    jokeUtil.getNewJokelist(doc);
-                }
-            }
-        });
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
-    public void onClick2(View view) {
+    private void initView() {
 
-        int page = 1;
+        fragmentManager = getSupportFragmentManager();
 
-        final String url = JokeApi.PENGFU_NEW_XIAOHUA + page + JokeApi.URL_SUFFIX;
+        RadioGroup rgbottomBar = (RadioGroup) findViewById(R.id.rgBottomBar);
 
-        HttpUtils.doGetAsyn(url, new HttpUtils.CallBack() {
+        rgbottomBar.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onRequestComplete(String result) {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                Document doc = Jsoup.parse(result);
-//                System.out.println(doc);
-
-                if (doc != null) {
-                    JokeUtil jokeUtil = new JokeUtil();
-                    jokeUtil.getNewJokelist(doc);
-                }
+                selectTab();
             }
         });
 
+        radioBtn1.setChecked(true);
+
+        selectTab();
+
     }
 
-    public void onClick3(View view) {
-        int page = 1;
 
-        final String url = JokeApi.PENGFU_NEW_QUTU + page + JokeApi.URL_SUFFIX;
+    private void selectTab() {
 
-        HttpUtils.doGetAsyn(url, new HttpUtils.CallBack() {
-            @Override
-            public void onRequestComplete(String result) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-                Document doc = Jsoup.parse(result);
-//                System.out.println(doc);
+        hideFragments(transaction);
 
-                if (doc != null) {
-                    JokeUtil jokeUtil = new JokeUtil();
-                    jokeUtil.getNewJokelist(doc);
-                }
+        if (radioBtn1.isChecked()) {
+            if (mainFragment == null) {
+                mainFragment = new MainFragment();
+                transaction.add(R.id.content, mainFragment);
+            } else {
+                transaction.show(mainFragment);
             }
-        });
-    }
 
-    public void onClick4(View view) {
-
-        int page = 1;
-
-        final String url = JokeApi.PENGFU_NEW_SHEN + page + JokeApi.URL_SUFFIX;
-
-        HttpUtils.doGetAsyn(url, new HttpUtils.CallBack() {
-            @Override
-            public void onRequestComplete(String result) {
-
-                Document doc = Jsoup.parse(result);
-                if (doc != null) {
-                    JokeUtil jokeUtil = new JokeUtil();
-                    jokeUtil.getNewJokelist(doc);
-                }
+        } else if (radioBtn2.isChecked()) {
+            if (xiaohuaFragment == null) {
+                xiaohuaFragment = new XiaohuaFragment();
+                transaction.add(R.id.content, xiaohuaFragment);
+            } else {
+                transaction.show(xiaohuaFragment);
             }
-        });
 
+        } else if (radioBtn3.isChecked()) {
+            if (qutuFragment == null) {
+                qutuFragment = new QutuFragment();
+                transaction.add(R.id.content, qutuFragment);
+            } else {
+                transaction.show(qutuFragment);
+            }
+
+        } else {
+            if (shenHuifuFragment == null) {
+                shenHuifuFragment = new ShenHuifuFragment();
+                transaction.add(R.id.content, shenHuifuFragment);
+            } else {
+                transaction.show(shenHuifuFragment);
+            }
+        }
+        transaction.commit();
     }
 
+    private void hideFragments(FragmentTransaction transaction) {
+        if (mainFragment != null) {
+            transaction.hide(mainFragment);
+        }
+        if (xiaohuaFragment != null) {
+            transaction.hide(xiaohuaFragment);
+        }
+        if (qutuFragment != null) {
+            transaction.hide(qutuFragment);
+        }
+        if (shenHuifuFragment != null) {
+            transaction.hide(shenHuifuFragment);
+        }
+    }
 }
