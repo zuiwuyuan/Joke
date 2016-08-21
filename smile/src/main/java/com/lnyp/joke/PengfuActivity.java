@@ -1,22 +1,23 @@
+/*
 package com.lnyp.joke;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.lnyp.joke.http.HttpUtils;
-import com.lnyp.joke.pengfu.JokeApi;
-import com.lnyp.joke.pengfu.JokeUtil;
+import com.lnyp.api.http.HttpUtils;
+import com.lnyp.api.pengfu.JokeApi;
+import com.lnyp.api.pengfu.JokeUtil;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-public class MainActivity extends AppCompatActivity {
+public class PengfuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_pengfu);
     }
 
     public void onClick1(View view) {
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
             public void onRequestComplete(String result) {
 
                 Document doc = Jsoup.parse(result);
-//                System.out.println(doc.toString());
 
                 if (doc != null) {
                     JokeUtil jokeUtil = new JokeUtil();
@@ -101,5 +101,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 }
+*/
