@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import im.fir.sdk.FIR;
 import im.fir.sdk.VersionCheckCallback;
@@ -84,12 +83,12 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onStart() {
-                Toast.makeText(getApplicationContext(), "正在获取", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "正在获取", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFinish() {
-                Toast.makeText(getApplicationContext(), "获取完成", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "获取完成", Toast.LENGTH_SHORT).show();
             }
         });
     }
