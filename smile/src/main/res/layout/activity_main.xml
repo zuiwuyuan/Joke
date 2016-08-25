@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_alignParentBottom="true"
-        android:background="#ffffff">
+        android:background="#EFEFEF">
 
         <RadioGroup
             android:id="@+id/rgBottomBar"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@null"
-                android:drawableTop="@drawable/selector_main_bottom_tab1"
+                android:drawableTop="@drawable/selector_main_bottom_tab2"
                 android:gravity="center"
                 android:padding="10dp" />
 
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@null"
-                android:drawableTop="@drawable/selector_main_bottom_tab1"
+                android:drawableTop="@drawable/selector_main_bottom_tab3"
                 android:gravity="center"
                 android:padding="10dp" />
 
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@null"
-                android:drawableTop="@drawable/selector_main_bottom_tab2"
+                android:drawableTop="@drawable/selector_main_bottom_tab4"
                 android:gravity="center"
                 android:padding="10dp" />
 

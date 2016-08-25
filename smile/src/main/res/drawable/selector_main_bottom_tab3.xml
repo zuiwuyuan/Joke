@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--    底部导航栏，第一个tab item   -->
-    <item android:drawable="@mipmap/main_bottom_bar_tab1_selected" android:state_checked="true" android:state_enabled="true"/>
-    <item android:drawable="@mipmap/main_bottom_bar_tab1_normal" android:state_checked="false" android:state_enabled="false"/>
-    <item android:drawable="@mipmap/main_bottom_bar_tab1_normal"/>
+    <item android:drawable="@mipmap/tab_qutu_sel" android:state_checked="true" android:state_enabled="true"/>
+    <item android:drawable="@mipmap/tab_qutu_nor" android:state_checked="false" android:state_enabled="false"/>
+    <item android:drawable="@mipmap/tab_qutu_nor"/>
 
 </selector>
