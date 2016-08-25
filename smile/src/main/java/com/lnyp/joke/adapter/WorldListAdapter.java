@@ -80,8 +80,8 @@ public class WorldListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 //                    System.out.println(dataBean.getShowImg() + "    " + dataBean.getGifsrcImg());
 
-                    int width = Integer.parseInt(dataBean.getWidth());
-                    int height = Integer.parseInt(dataBean.getHeight());
+                    double width = Double.parseDouble(dataBean.getWidth());
+                    double height = Double.parseDouble(dataBean.getHeight());
 
                     ViewGroup.LayoutParams lp = viewHolder.imgJoke.getLayoutParams();
 
