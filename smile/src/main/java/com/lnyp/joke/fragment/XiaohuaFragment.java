@@ -24,6 +24,7 @@ import com.lnyp.recyclerview.EndlessRecyclerOnScrollListener;
 import com.lnyp.recyclerview.HeaderAndFooterRecyclerViewAdapter;
 import com.lnyp.recyclerview.RecyclerViewLoadingFooter;
 import com.lnyp.recyclerview.RecyclerViewStateUtils;
+import com.victor.loading.rotate.RotateLoading;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -37,13 +38,10 @@ import butterknife.Unbinder;
 
 public class XiaohuaFragment extends Fragment {
 
-
-    public XiaohuaFragment() {
-        // Required empty public constructor
-    }
-
-
     private Unbinder unbinder;
+
+    @BindView(R.id.rotateloading)
+    public RotateLoading rotateloading;
 
     @BindView(R.id.swipeRefreshLayout)
     public PullRefreshLayout swipeRefreshLayout;
@@ -74,6 +72,7 @@ public class XiaohuaFragment extends Fragment {
 
                     RecyclerViewStateUtils.setFooterViewState(listInspirations, RecyclerViewLoadingFooter.State.Normal);
                     swipeRefreshLayout.setRefreshing(false);
+                    rotateloading.stop();
                     
                     mAdapter.notifyDataSetChanged();
 
@@ -92,7 +91,7 @@ public class XiaohuaFragment extends Fragment {
 
         initView();
 
-        swipeRefreshLayout.setRefreshing(true);
+        rotateloading.start();
         refreshReq();
 
         return view;

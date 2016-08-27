@@ -24,6 +24,7 @@ import com.lnyp.recyclerview.EndlessRecyclerOnScrollListener;
 import com.lnyp.recyclerview.HeaderAndFooterRecyclerViewAdapter;
 import com.lnyp.recyclerview.RecyclerViewLoadingFooter;
 import com.lnyp.recyclerview.RecyclerViewStateUtils;
+import com.victor.loading.rotate.RotateLoading;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -38,6 +39,9 @@ import butterknife.Unbinder;
 public class ShenHuifuFragment extends Fragment {
 
     private Unbinder unbinder;
+
+    @BindView(R.id.rotateloading)
+    public RotateLoading rotateloading;
 
     @BindView(R.id.swipeRefreshLayout)
     public PullRefreshLayout swipeRefreshLayout;
@@ -68,7 +72,8 @@ public class ShenHuifuFragment extends Fragment {
 
                     RecyclerViewStateUtils.setFooterViewState(listInspirations, RecyclerViewLoadingFooter.State.Normal);
                     swipeRefreshLayout.setRefreshing(false);
-
+                    rotateloading.stop();
+                    
                     mAdapter.notifyDataSetChanged();
 
                     break;
@@ -79,15 +84,13 @@ public class ShenHuifuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_shen_huifu, container, false);
 
         unbinder = ButterKnife.bind(this, view);
 
         initView();
 
-
-        swipeRefreshLayout.setRefreshing(true);
+        rotateloading.start();
         refreshReq();
 
         return view;
@@ -96,12 +99,6 @@ public class ShenHuifuFragment extends Fragment {
     private void initView() {
 
         mDatas = new ArrayList<>();
-
-//        List<JokeBean> inspirationSimples = MyApp.cache.inspirationSimples;
-
-//        if (inspirationSimples != null) {
-//            mDatas.addAll(inspirationSimples);
-//        }
 
         WorldListAdapter worldListAdapter = new WorldListAdapter(this, mDatas, onClickListener);
         mAdapter = new HeaderAndFooterRecyclerViewAdapter(worldListAdapter);
