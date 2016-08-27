@@ -149,6 +149,9 @@ public class MainFragment extends Fragment {
             @Override
             public void onRequestComplete(String result) {
 
+                if (result == null) {
+                    return;
+                }
                 Document doc = Jsoup.parse(result);
 
                 if (doc != null) {

@@ -1,7 +1,6 @@
 package com.lnyp.joke;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,7 +15,9 @@ public class SplashActivity extends AppCompatActivity {
     /**
      * 最短启动时间
      */
-    private static final int SHOW_TIME_MIN = 2000;
+    private static final int SHOW_TIME_MIN = 2500;
+
+    private long startTime;
 
     /*RespUpdate respUpdate;
     DialogUpdateInfo dialogUpdateInfo;
@@ -64,66 +65,49 @@ public class SplashActivity extends AppCompatActivity {
 
         checkUpdate();
 
-        new InitTask().execute();
     }
-
 
     private void checkUpdate() {
 
         FIR.checkForUpdateInFIR("c4eba07f521cf456edd68b9517c24df3", new VersionCheckCallback() {
             @Override
             public void onSuccess(String versionJson) {
-                Log.i("fir", "check from fir.im success! " + "\n" + versionJson);
+                Log.i("fir", "onSuccess " + "\n" + versionJson);
             }
 
             @Override
             public void onFail(Exception exception) {
-                Log.i("fir", "check fir.im fail! " + "\n" + exception.getMessage());
+                Log.i("fir", "onFail" + "\n" + exception.getMessage());
             }
 
             @Override
             public void onStart() {
-//                Toast.makeText(getApplicationContext(), "正在获取", Toast.LENGTH_SHORT).show();
+                Log.i("fir", "onStart ");
+                startTime = System.currentTimeMillis();
             }
 
             @Override
             public void onFinish() {
-//                Toast.makeText(getApplicationContext(), "获取完成", Toast.LENGTH_SHORT).show();
+                Log.i("fir", "onFinish");
+
+                long loadingTime = System.currentTimeMillis() - startTime;
+
+                if (loadingTime < SHOW_TIME_MIN) {
+                    try {
+                        Thread.sleep(SHOW_TIME_MIN - loadingTime);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                Intent intent = new Intent();
+
+                intent.setClass(SplashActivity.this, MainActivity.class);
+
+                startActivity(intent);
+                SplashActivity.this.finish();
             }
         });
     }
 
-
-    public class InitTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            // 最短启动时间
-            long startTime = System.currentTimeMillis();
-
-            long loadingTime = System.currentTimeMillis() - startTime;
-
-            if (loadingTime < SHOW_TIME_MIN) {
-                try {
-                    Thread.sleep(SHOW_TIME_MIN - loadingTime);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            Intent intent = new Intent();
-
-            intent.setClass(SplashActivity.this, MainActivity.class);
-
-            startActivity(intent);
-            SplashActivity.this.finish();
-        }
-    }
 }

@@ -73,7 +73,7 @@ public class XiaohuaFragment extends Fragment {
                     RecyclerViewStateUtils.setFooterViewState(listInspirations, RecyclerViewLoadingFooter.State.Normal);
                     swipeRefreshLayout.setRefreshing(false);
                     rotateloading.stop();
-                    
+
                     mAdapter.notifyDataSetChanged();
 
                     break;
@@ -152,7 +152,9 @@ public class XiaohuaFragment extends Fragment {
 
             @Override
             public void onRequestComplete(String result) {
-
+                if (result == null) {
+                    return;
+                }
                 Document doc = Jsoup.parse(result);
 
                 if (doc != null) {
