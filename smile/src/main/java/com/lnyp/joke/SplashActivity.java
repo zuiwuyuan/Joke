@@ -1,11 +1,18 @@
 package com.lnyp.joke;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.google.gson.Gson;
+import com.lnyp.joke.bean.UpgradeBean;
+import com.lnyp.joke.util.AppUtils;
+import com.lnyp.joke.widget.DialogUpdateInfo;
 
 import im.fir.sdk.FIR;
 import im.fir.sdk.VersionCheckCallback;
@@ -19,8 +26,10 @@ public class SplashActivity extends AppCompatActivity {
 
     private long startTime;
 
-    /*RespUpdate respUpdate;
+    UpgradeBean respUpdate;
+
     DialogUpdateInfo dialogUpdateInfo;
+
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
 
         @Override
@@ -29,19 +38,17 @@ public class SplashActivity extends AppCompatActivity {
             switch (v.getId()) {
 
                 case R.id.btnSubmit:
-                    Uri uri = Uri.parse(respUpdate.getData().getApk_url());
+                    Uri uri = Uri.parse(respUpdate.getInstall_url());
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     SplashActivity.this.startActivity(intent);
                     break;
                 case R.id.btnCancle:
-                    // 如果在启动APP时，不做任何网络请求，可设置app最短启动时间
-                    // 如果进行了网络请求，则无需设置
-                    new InitTask().execute();
+                    jumpToMain();
                     break;
             }
             dialogUpdateInfo.dismiss();
         }
-    };*/
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,44 +77,65 @@ public class SplashActivity extends AppCompatActivity {
     private void checkUpdate() {
 
         FIR.checkForUpdateInFIR("c4eba07f521cf456edd68b9517c24df3", new VersionCheckCallback() {
-            @Override
-            public void onSuccess(String versionJson) {
-                Log.i("fir", "onSuccess " + "\n" + versionJson);
-            }
+                    @Override
+                    public void onSuccess(String versionJson) {
+                        Log.i("fir", "onSuccess " + "\n" + versionJson);
+                        Gson gson = new Gson();
+                        respUpdate = gson.fromJson(versionJson, UpgradeBean.class);
+                    }
 
-            @Override
-            public void onFail(Exception exception) {
-                Log.i("fir", "onFail" + "\n" + exception.getMessage());
-            }
+                    @Override
+                    public void onFail(Exception exception) {
+                        Log.i("fir", "onFail" + "\n" + exception.getMessage());
+                    }
 
-            @Override
-            public void onStart() {
-                Log.i("fir", "onStart ");
-                startTime = System.currentTimeMillis();
-            }
+                    @Override
+                    public void onStart() {
+                        Log.i("fir", "onStart ");
+                        startTime = System.currentTimeMillis();
+                    }
 
-            @Override
-            public void onFinish() {
-                Log.i("fir", "onFinish");
+                    @Override
+                    public void onFinish() {
+                        Log.i("fir", "onFinish");
 
-                long loadingTime = System.currentTimeMillis() - startTime;
+                        long loadingTime = System.currentTimeMillis() - startTime;
 
-                if (loadingTime < SHOW_TIME_MIN) {
-                    try {
-                        Thread.sleep(SHOW_TIME_MIN - loadingTime);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        if (loadingTime < SHOW_TIME_MIN) {
+                            try {
+                                Thread.sleep(SHOW_TIME_MIN - loadingTime);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        try {
+
+                            // 判断是否需要更新
+                            if (respUpdate.getVersion() > AppUtils.getVersionCode(SplashActivity.this)) {
+                                String update_desc = respUpdate.getChangelog();
+
+                                dialogUpdateInfo = new DialogUpdateInfo(SplashActivity.this, R.style.dialog_update_app, update_desc, mOnClickListener);
+                                dialogUpdateInfo.show();
+
+                            } else {
+                                jumpToMain();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            jumpToMain();
+                        }
                     }
                 }
-
-                Intent intent = new Intent();
-
-                intent.setClass(SplashActivity.this, MainActivity.class);
-
-                startActivity(intent);
-                SplashActivity.this.finish();
-            }
-        });
+        );
     }
 
+    private void jumpToMain() {
+        Intent intent = new Intent();
+
+        intent.setClass(SplashActivity.this, MainActivity.class);
+
+        startActivity(intent);
+        SplashActivity.this.finish();
+    }
 }

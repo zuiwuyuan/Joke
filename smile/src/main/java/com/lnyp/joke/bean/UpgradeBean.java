@@ -18,7 +18,7 @@ public class UpgradeBean {
      */
 
     private String name;
-    private String version;
+    private int version;
     private String changelog;
     private String versionShort;
     private String build;
@@ -39,11 +39,11 @@ public class UpgradeBean {
         this.name = name;
     }
 
-    public String getVersion() {
+    public int getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
+    public void setVersion(int version) {
         this.version = version;
     }
 
