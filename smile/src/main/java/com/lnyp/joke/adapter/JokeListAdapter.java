@@ -81,14 +81,14 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 //                    System.out.println(dataBean.getShowImg() + "    " + dataBean.getGifsrcImg());
 
-                    double width = Double.parseDouble(dataBean.getWidth());
-                    double height = Double.parseDouble(dataBean.getHeight());
-
-                    ViewGroup.LayoutParams lp = viewHolder.imgJoke.getLayoutParams();
-
-                    lp.width = (int) (width * 1.8);
-                    lp.height = (int) (height * 1.8);
-                    viewHolder.imgJoke.setLayoutParams(lp);
+//                    double width = Double.parseDouble(dataBean.getWidth());
+//                    double height = Double.parseDouble(dataBean.getHeight());
+//
+//                    ViewGroup.LayoutParams lp = viewHolder.imgJoke.getLayoutParams();
+//
+//                    lp.width = (int) (width * 1.8);
+//                    lp.height = (int) (height * 1.8);
+//                    viewHolder.imgJoke.setLayoutParams(lp);
 
                     String url = dataBean.getShowImg();
                     String gifUrl = dataBean.getGifsrcImg();
