@@ -6,8 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.lnyp.joke.util.ScreenSizeUtil;
 
 public class ShowMaxImageView extends ImageView {
@@ -83,15 +85,21 @@ public class ShowMaxImageView extends ImageView {
                 mHeight = bitmapHeight * scaleWidth;
             }
         }
-
     }
 
 
     private Bitmap drawableToBitamp(Drawable drawable) {
 
         if (drawable != null) {
-            BitmapDrawable bd = (BitmapDrawable) drawable;
-            return bd.getBitmap();
+            Log.e("drawable", drawable.toString());
+            if (drawable instanceof GifDrawable) {
+                GifDrawable bd = (GifDrawable) drawable;
+                return bd.getFirstFrame();
+
+            } else {
+                BitmapDrawable bd = (BitmapDrawable) drawable;
+                return bd.getBitmap();
+            }
         } else {
             return null;
         }

@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.baoyz.widget.PullRefreshLayout;
 import com.lnyp.flexibledivider.HorizontalDividerItemDecoration;
 import com.lnyp.joke.R;
-import com.lnyp.joke.adapter.WorldListAdapter;
+import com.lnyp.joke.adapter.JokeListAdapter;
 import com.lnyp.joke.http.HttpUtils;
 import com.lnyp.joke.pengfu.JokeApi;
 import com.lnyp.joke.pengfu.JokeBean;
@@ -100,8 +100,8 @@ public class ShenHuifuFragment extends Fragment {
 
         mDatas = new ArrayList<>();
 
-        WorldListAdapter worldListAdapter = new WorldListAdapter(this, mDatas, onClickListener);
-        mAdapter = new HeaderAndFooterRecyclerViewAdapter(worldListAdapter);
+        JokeListAdapter jokeListAdapter = new JokeListAdapter(this, mDatas, onClickListener);
+        mAdapter = new HeaderAndFooterRecyclerViewAdapter(jokeListAdapter);
         listInspirations.setAdapter(mAdapter);
 
         listInspirations.setLayoutManager(new LinearLayoutManager(getActivity()));

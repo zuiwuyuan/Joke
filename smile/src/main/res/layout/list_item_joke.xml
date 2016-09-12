@@ -72,7 +72,7 @@
             android:lineSpacingExtra="4dp"
             android:text="描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述"
             android:textColor="#555555"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
 
         <com.lnyp.joke.widget.ShowMaxImageView
             android:id="@+id/imgJoke"
@@ -80,8 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:scaleType="fitCenter" />
+            android:layout_marginTop="10dp" />
 
         <LinearLayout
             android:id="@+id/layoutTags"

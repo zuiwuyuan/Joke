@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.lnyp.joke.R;
 import com.lnyp.joke.pengfu.JokeBean;
 import com.lnyp.joke.widget.CircleImageView;
@@ -23,7 +24,7 @@ import butterknife.ButterKnife;
 /**
  * 世界（灵感）列表
  */
-public class WorldListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private LayoutInflater mInflater;
 
@@ -33,7 +34,7 @@ public class WorldListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private View.OnClickListener onItemClick;
 
-    public WorldListAdapter(Fragment context, List<JokeBean> datas, View.OnClickListener onItemClick) {
+    public JokeListAdapter(Fragment context, List<JokeBean> datas, View.OnClickListener onItemClick) {
 
         this.mContext = context;
 
@@ -85,16 +86,18 @@ public class WorldListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                     ViewGroup.LayoutParams lp = viewHolder.imgJoke.getLayoutParams();
 
-                    lp.width = (int) (width * 1.5);
-                    lp.height = (int) (height * 1.5);
+                    lp.width = (int) (width * 1.8);
+                    lp.height = (int) (height * 1.8);
                     viewHolder.imgJoke.setLayoutParams(lp);
 
-                    Glide.with(mContext)
-                            .load(dataBean.getShowImg())
-                            .asBitmap()
-                            .fitCenter()
-                            .into(viewHolder.imgJoke);
-
+                    String url = dataBean.getShowImg();
+                    String gifUrl = dataBean.getGifsrcImg();
+                    System.out.println("url : " + url + "  gifUrl : " + gifUrl);
+                    if (TextUtils.isEmpty(gifUrl)) {
+                        Glide.with(mContext).load(url).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(viewHolder.imgJoke);
+                    } else {
+                        Glide.with(mContext).load(gifUrl).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(viewHolder.imgJoke);
+                    }
                 } else {
                     viewHolder.textContent.setVisibility(View.VISIBLE);
                     viewHolder.imgJoke.setVisibility(View.GONE);
