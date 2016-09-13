@@ -3,6 +3,7 @@ package com.lnyp.joke.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,8 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private View.OnClickListener onItemClick;
 
+    private int screenWidth;
+
     public JokeListAdapter(Fragment context, List<JokeBean> datas, View.OnClickListener onItemClick) {
 
         this.mContext = context;
@@ -44,6 +47,9 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         mInflater = LayoutInflater.from(context.getActivity());
 
+        DisplayMetrics metric = new DisplayMetrics();
+        context.getActivity().getWindowManager().getDefaultDisplay().getMetrics(metric);
+        screenWidth = metric.widthPixels;
     }
 
     @Override
@@ -81,14 +87,12 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 //                    System.out.println(dataBean.getShowImg() + "    " + dataBean.getGifsrcImg());
 
-//                    double width = Double.parseDouble(dataBean.getWidth());
-//                    double height = Double.parseDouble(dataBean.getHeight());
-//
-//                    ViewGroup.LayoutParams lp = viewHolder.imgJoke.getLayoutParams();
-//
-//                    lp.width = (int) (width * 1.8);
-//                    lp.height = (int) (height * 1.8);
-//                    viewHolder.imgJoke.setLayoutParams(lp);
+                    double width = Double.parseDouble(dataBean.getWidth());
+                    double height = Double.parseDouble(dataBean.getHeight());
+                    ViewGroup.LayoutParams lp = viewHolder.imgJoke.getLayoutParams();
+                    lp.width = (int) (screenWidth * 0.8);
+                    lp.height = (int) (screenWidth * 0.8 * height / width);
+                    viewHolder.imgJoke.setLayoutParams(lp);
 
                     String url = dataBean.getShowImg();
                     String gifUrl = dataBean.getGifsrcImg();
