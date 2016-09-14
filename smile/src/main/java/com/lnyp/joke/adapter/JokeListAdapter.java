@@ -102,6 +102,8 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     } else {
                         Glide.with(mContext).load(gifUrl).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(viewHolder.imgJoke);
                     }
+
+
                 } else {
                     viewHolder.textContent.setVisibility(View.VISIBLE);
                     viewHolder.imgJoke.setVisibility(View.GONE);
@@ -141,8 +143,11 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 viewHolder.layoutTags.setVisibility(View.GONE);
             }
 
-            viewHolder.itemView.setTag(position);
-            viewHolder.itemView.setOnClickListener(onItemClick);
+//            viewHolder.itemView.setTag(position);
+//            viewHolder.itemView.setOnClickListener(onItemClick);
+
+//            viewHolder.imgJoke.setTag(position);
+//            viewHolder.imgJoke.setOnClickListener(onItemClick);
         }
     }
 

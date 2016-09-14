@@ -65,6 +65,7 @@ public class MainFragment extends Fragment {
     private MyHandler mHandler = new MyHandler();
 
     private class MyHandler extends Handler {
+
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case 0:
@@ -152,6 +153,7 @@ public class MainFragment extends Fragment {
                 if (result == null) {
                     return;
                 }
+
                 Document doc = Jsoup.parse(result);
 
                 if (doc != null) {
@@ -160,7 +162,6 @@ public class MainFragment extends Fragment {
                     List<JokeBean> jokeBeens = jokeUtil.getNewJokelist(doc);
 
                     if (jokeBeens != null) {
-
 
                         page++;
                         mHasMore = true;
@@ -213,6 +214,16 @@ public class MainFragment extends Fragment {
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            try {
+                int pos = (int) view.getTag();
+                JokeBean jokeBean = mDatas.get(pos);
+//                String showImg = jokeBean.getDataBean().getShowImg();
+//                String gifSrcImg = jokeBean.getDataBean().getGifsrcImg();
+//
+//                System.out.println(showImg + "   " + gifSrcImg);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
     };

@@ -33,9 +33,13 @@
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".BaseActivity"
+            android:name=".PhotoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".BaseActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="BUG_HD_SDK_GENERAL_KEY"
