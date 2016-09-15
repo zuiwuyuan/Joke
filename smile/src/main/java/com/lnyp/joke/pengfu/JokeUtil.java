@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 句子工具类
+ * 笑话工具类
  */
 public class JokeUtil {
 
