@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 世界（灵感）列表
+ *笑话列表
  */
 public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -77,6 +77,7 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             viewHolder.textUserName.setText(jokeBean.getUserName());
             viewHolder.textLastTime.setText(jokeBean.getLastTime());
+            viewHolder.textTitle.setText(jokeBean.getTitle());
 
             JokeBean.DataBean dataBean = jokeBean.getDataBean();
             if (dataBean != null) {
@@ -84,6 +85,7 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                     viewHolder.textContent.setVisibility(View.GONE);
                     viewHolder.imgJoke.setVisibility(View.VISIBLE);
+                    viewHolder.textTitle.setVisibility(View.VISIBLE);
 
 //                    System.out.println(dataBean.getShowImg() + "    " + dataBean.getGifsrcImg());
 
@@ -107,6 +109,7 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 } else {
                     viewHolder.textContent.setVisibility(View.VISIBLE);
                     viewHolder.imgJoke.setVisibility(View.GONE);
+                    viewHolder.textTitle.setVisibility(View.GONE);
 
                     viewHolder.textContent.setText(dataBean.getContent());
                 }
@@ -147,7 +150,8 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 //            viewHolder.itemView.setOnClickListener(onItemClick);
 
 //            viewHolder.imgJoke.setTag(position);
-//            viewHolder.imgJoke.setOnClickListener(onItemClick);
+            viewHolder.imgJoke.setTag(R.string.app_name, position);
+            viewHolder.imgJoke.setOnClickListener(onItemClick);
         }
     }
 
@@ -174,6 +178,9 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         @BindView(R.id.layoutTags)
         public LinearLayout layoutTags;
+
+        @BindView(R.id.textTitle)
+        public TextView textTitle;
 
         @BindView(R.id.textTag1)
         public TextView textTag1;

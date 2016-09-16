@@ -10,6 +10,7 @@ public class JokeBean {
     private String userName;
     private String lastTime;
     private String userAvatar;
+    private String title;
     private String shareUrl;
     private List<String> tags;
 
@@ -53,6 +54,14 @@ public class JokeBean {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public DataBean getDataBean() {

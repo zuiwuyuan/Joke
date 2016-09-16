@@ -34,13 +34,15 @@ public class JokeUtil {
                     Element head_name_element = head_name_elements.first();
                     if (head_name_element != null) {
                         String userAvatar = head_name_element.select("img").first().attr("src");
-                        String userName = head_name_element.select("a[href]").get(1).text(); //带有href属性的a元素
+                        String userName = head_name_element.select("img").first().attr("alt");
+                        String title = head_name_element.select("a[href]").get(1).text(); //带有href属性的a元素
                         String lastTime = head_name_element.getElementsByClass("dp-i-b").first().text(); //带有href属性的a元素
 
                         String shareUrl = head_name_element.select("a[href]").get(1).attr("href");
 
-                        jokeBean.setUserAvatar(userAvatar);
                         jokeBean.setUserName(userName);
+                        jokeBean.setUserAvatar(userAvatar);
+                        jokeBean.setTitle(title);
                         jokeBean.setLastTime(lastTime);
 
                         jokeBean.setShareUrl(shareUrl);

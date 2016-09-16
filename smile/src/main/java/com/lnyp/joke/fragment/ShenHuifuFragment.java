@@ -209,6 +209,16 @@ public class ShenHuifuFragment extends Fragment {
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            try {
+                int pos = (int) view.getTag(R.string.app_name);
+                JokeBean jokeBean = mDatas.get(pos);
+                String showImg = jokeBean.getDataBean().getShowImg();
+                String gifSrcImg = jokeBean.getDataBean().getGifsrcImg();
+//
+                System.out.println(showImg + "   " + gifSrcImg);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
     };

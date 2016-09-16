@@ -153,6 +153,7 @@ public class MainFragment extends Fragment {
                 if (result == null) {
                     return;
                 }
+                System.out.println(result);
 
                 Document doc = Jsoup.parse(result);
 
@@ -215,12 +216,12 @@ public class MainFragment extends Fragment {
         @Override
         public void onClick(View view) {
             try {
-                int pos = (int) view.getTag();
+                int pos = (int) view.getTag(R.string.app_name);
                 JokeBean jokeBean = mDatas.get(pos);
-//                String showImg = jokeBean.getDataBean().getShowImg();
-//                String gifSrcImg = jokeBean.getDataBean().getGifsrcImg();
+                String showImg = jokeBean.getDataBean().getShowImg();
+                String gifSrcImg = jokeBean.getDataBean().getGifsrcImg();
 //
-//                System.out.println(showImg + "   " + gifSrcImg);
+                System.out.println(showImg + "   " + gifSrcImg);
             } catch (Exception e) {
                 e.printStackTrace();
             }

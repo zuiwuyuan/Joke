@@ -44,16 +44,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:text="textUserNametextUserNametextUserNametextUserNametextUserNametextUserNametextUserNametextUserNametextUserName" />
+                    android:text="textUserNametextUserNametextUserNametextUserNametextUserNametextUserNametextUserNametextUserNametextUserName"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/textLastTime"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:layout_toRightOf="@id/imgUser"
+                    android:gravity="right"
                     android:singleLine="true"
-                    android:text="textLastTime" />
+                    android:text="textLastTime"
+                    android:textColor="#555555"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -71,7 +76,7 @@
             android:gravity="left"
             android:lineSpacingExtra="4dp"
             android:text="描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述"
-            android:textColor="#555555"
+            android:textColor="#333333"
             android:textSize="15sp" />
 
         <com.lnyp.joke.widget.ShowMaxImageView
@@ -80,12 +85,27 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="4dp"
+            android:singleLine="true"
+            android:text="title title title tiltle title"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/layoutTags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="4dp"
