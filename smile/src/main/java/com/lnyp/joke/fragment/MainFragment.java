@@ -58,8 +58,6 @@ public class MainFragment extends Fragment {
 
     private boolean isRefresh = true;
 
-    private boolean isNetError = false;
-
 
     // 处理请求返回信息
     private MyHandler mHandler = new MyHandler();
@@ -201,14 +199,6 @@ public class MainFragment extends Fragment {
             } else {
                 RecyclerViewStateUtils.setFooterViewState(getActivity(), listInspirations, mHasMore, RecyclerViewLoadingFooter.State.TheEnd, null);
             }
-        }
-    };
-
-    private View.OnClickListener mFooterClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            RecyclerViewStateUtils.setFooterViewState(getActivity(), listInspirations, mHasMore, RecyclerViewLoadingFooter.State.Loading, null);
-            qryJokes();
         }
     };
 
