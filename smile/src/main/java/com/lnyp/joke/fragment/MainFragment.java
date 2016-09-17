@@ -1,5 +1,6 @@
 package com.lnyp.joke.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.baoyz.widget.PullRefreshLayout;
 import com.lnyp.flexibledivider.HorizontalDividerItemDecoration;
+import com.lnyp.joke.PhotoActivity;
 import com.lnyp.joke.R;
 import com.lnyp.joke.adapter.JokeListAdapter;
 import com.lnyp.joke.http.HttpUtils;
@@ -211,7 +213,12 @@ public class MainFragment extends Fragment {
                 String showImg = jokeBean.getDataBean().getShowImg();
                 String gifSrcImg = jokeBean.getDataBean().getGifsrcImg();
 //
-                System.out.println(showImg + "   " + gifSrcImg);
+//                System.out.println(showImg + "   " + gifSrcImg);
+
+                Intent intent = new Intent(getActivity(), PhotoActivity.class);
+                intent.putExtra("showImg", showImg);
+                intent.putExtra("gifSrcImg", gifSrcImg);
+                startActivity(intent);
             } catch (Exception e) {
                 e.printStackTrace();
             }

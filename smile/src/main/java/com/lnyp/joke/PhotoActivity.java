@@ -2,33 +2,63 @@ package com.lnyp.joke;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.KeyEvent;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * 图片浏览
  */
 public class PhotoActivity extends FragmentActivity {
 
-    private String imgUrl;
+    @BindView(R.id.imgJoke)
+    public ImageView imgJoke;
+
+    private String showImg;
+    private String gifSrcImg;
+
+    private PhotoViewAttacher mAttacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
-        imgUrl = getIntent().getStringExtra("imgUrl");
-    }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            transformOut();
-            return true;
+        ButterKnife.bind(this);
+
+        mAttacher = new PhotoViewAttacher(imgJoke);
+
+        showImg = getIntent().getStringExtra("showImg");
+        gifSrcImg = getIntent().getStringExtra("gifSrcImg");
+        System.out.println(showImg + "   " + gifSrcImg);
+
+        if (TextUtils.isEmpty(gifSrcImg)) {
+            Glide.with(this).load(showImg).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imgJoke);
+        } else {
+            Glide.with(this).load(gifSrcImg).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imgJoke);
         }
-        return super.onKeyDown(keyCode, event);
-    }
 
-    public void transformOut() {
-        finish();
-        this.overridePendingTransition(0, 0);
+        mAttacher.update();
+
+        mAttacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+            @Override
+            public void onPhotoTap(View view, float x, float y) {
+                System.out.println("111");
+                PhotoActivity.this.finish();
+            }
+
+            @Override
+            public void onOutsidePhotoTap() {
+                System.out.println("222");
+                PhotoActivity.this.finish();
+            }
+        });
     }
 }
