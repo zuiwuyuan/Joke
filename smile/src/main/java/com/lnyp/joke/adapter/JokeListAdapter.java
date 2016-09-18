@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- *笑话列表
+ * 笑话列表
  */
 public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -87,8 +87,6 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     viewHolder.imgJoke.setVisibility(View.VISIBLE);
                     viewHolder.textTitle.setVisibility(View.VISIBLE);
 
-//                    System.out.println(dataBean.getShowImg() + "    " + dataBean.getGifsrcImg());
-
                     double width = Double.parseDouble(dataBean.getWidth());
                     double height = Double.parseDouble(dataBean.getHeight());
                     ViewGroup.LayoutParams lp = viewHolder.imgJoke.getLayoutParams();
@@ -98,13 +96,12 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                     String url = dataBean.getShowImg();
                     String gifUrl = dataBean.getGifsrcImg();
-                    System.out.println("url : " + url + "  gifUrl : " + gifUrl);
+//                    System.out.println("url : " + url + "  gifUrl : " + gifUrl);
                     if (TextUtils.isEmpty(gifUrl)) {
                         Glide.with(mContext).load(url).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(viewHolder.imgJoke);
                     } else {
                         Glide.with(mContext).load(gifUrl).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(viewHolder.imgJoke);
                     }
-
 
                 } else {
                     viewHolder.textContent.setVisibility(View.VISIBLE);

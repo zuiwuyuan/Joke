@@ -77,6 +77,9 @@ public class MainFragment extends Fragment {
                     mAdapter.notifyDataSetChanged();
 
                     break;
+                case 1:
+                    RecyclerViewStateUtils.setFooterViewState(getActivity(), listInspirations, mHasMore, RecyclerViewLoadingFooter.State.NetWorkError, mFooterClick);
+                    break;
             }
         }
     }
@@ -151,9 +154,9 @@ public class MainFragment extends Fragment {
             public void onRequestComplete(String result) {
 
                 if (result == null) {
+                    mHandler.sendEmptyMessage(1);
                     return;
                 }
-                System.out.println(result);
 
                 Document doc = Jsoup.parse(result);
 
@@ -201,6 +204,14 @@ public class MainFragment extends Fragment {
             } else {
                 RecyclerViewStateUtils.setFooterViewState(getActivity(), listInspirations, mHasMore, RecyclerViewLoadingFooter.State.TheEnd, null);
             }
+        }
+    };
+
+    private View.OnClickListener mFooterClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            RecyclerViewStateUtils.setFooterViewState(getActivity(), listInspirations, mHasMore, RecyclerViewLoadingFooter.State.Loading, null);
+            qryJokes();
         }
     };
 

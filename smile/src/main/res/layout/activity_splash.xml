@@ -6,4 +6,14 @@
     android:background="@mipmap/splash"
     tools:context="com.lnyp.joke.SplashActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4dp"
+        android:text="数据来源：http://www.pengfu.com/"
+        android:textColor="#333333"
+        android:textSize="14sp" />
+
 </RelativeLayout>

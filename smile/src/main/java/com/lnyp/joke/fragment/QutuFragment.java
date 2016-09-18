@@ -1,6 +1,7 @@
 package com.lnyp.joke.fragment;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.baoyz.widget.PullRefreshLayout;
 import com.lnyp.flexibledivider.HorizontalDividerItemDecoration;
+import com.lnyp.joke.PhotoActivity;
 import com.lnyp.joke.R;
 import com.lnyp.joke.adapter.JokeListAdapter;
 import com.lnyp.joke.http.HttpUtils;
@@ -77,6 +79,9 @@ public class QutuFragment extends Fragment {
 
                     mAdapter.notifyDataSetChanged();
 
+                    break;
+                case 1:
+                    RecyclerViewStateUtils.setFooterViewState(getActivity(), listInspirations, mHasMore, RecyclerViewLoadingFooter.State.NetWorkError, mFooterClick);
                     break;
             }
         }
@@ -148,6 +153,7 @@ public class QutuFragment extends Fragment {
             @Override
             public void onRequestComplete(String result) {
                 if (result == null) {
+                    mHandler.sendEmptyMessage(1);
                     return;
                 }
                 Document doc = Jsoup.parse(result);
@@ -216,8 +222,11 @@ public class QutuFragment extends Fragment {
                 JokeBean jokeBean = mDatas.get(pos);
                 String showImg = jokeBean.getDataBean().getShowImg();
                 String gifSrcImg = jokeBean.getDataBean().getGifsrcImg();
-//
-                System.out.println(showImg + "   " + gifSrcImg);
+//                System.out.println(showImg + "   " + gifSrcImg);
+                Intent intent = new Intent(getActivity(), PhotoActivity.class);
+                intent.putExtra("showImg", showImg);
+                intent.putExtra("gifSrcImg", gifSrcImg);
+                startActivity(intent);
             } catch (Exception e) {
                 e.printStackTrace();
             }
