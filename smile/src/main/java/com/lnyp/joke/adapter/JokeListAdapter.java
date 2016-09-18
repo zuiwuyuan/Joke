@@ -7,6 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,7 +16,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.lnyp.joke.R;
 import com.lnyp.joke.pengfu.JokeBean;
 import com.lnyp.joke.widget.CircleImageView;
-import com.lnyp.joke.widget.ShowMaxImageView;
 
 import java.util.List;
 
@@ -96,7 +96,7 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                     String url = dataBean.getShowImg();
                     String gifUrl = dataBean.getGifsrcImg();
-//                    System.out.println("url : " + url + "  gifUrl : " + gifUrl);
+
                     if (TextUtils.isEmpty(gifUrl)) {
                         Glide.with(mContext).load(url).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(viewHolder.imgJoke);
                     } else {
@@ -168,7 +168,7 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.imgJoke)
-        public ShowMaxImageView imgJoke;
+        public ImageView imgJoke;
 
         @BindView(R.id.textContent)
         public TextView textContent;

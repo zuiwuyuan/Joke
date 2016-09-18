@@ -61,8 +61,6 @@
                     android:textSize="12sp" />
 
             </LinearLayout>
-
-
         </RelativeLayout>
 
         <TextView
@@ -79,7 +77,7 @@
             android:textColor="#333333"
             android:textSize="15sp" />
 
-        <com.lnyp.joke.widget.ShowMaxImageView
+        <ImageView
             android:id="@+id/imgJoke"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
