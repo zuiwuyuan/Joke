@@ -7,4 +7,4 @@
 
 详细介绍，请查看：http://blog.csdn.net/zuiwuyuan/article/category/6422709
 
-如果对你 的 有帮助，请star下吧，谢谢。
+如果对你的学习成长有帮助，请star下吧，谢谢。
