@@ -94,6 +94,10 @@ public class JokeUtil {
                 }
 
                 jokeBeanList.add(jokeBean);
+
+//                for (JokeBean jokeBean1 : jokeBeanList) {
+//                    System.out.println(jokeBean1.getDataBean());
+//                }
             }
         }
 
