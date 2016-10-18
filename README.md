@@ -7,5 +7,6 @@
 
 详细介绍，请查看：http://blog.csdn.net/zuiwuyuan/article/category/6422709
 
+apk下载地址：http://fir.im/xiaohane
 
 如果对你的学习成长有帮助，请star下吧，谢谢。
