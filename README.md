@@ -3,7 +3,7 @@
 
 效果图：
 
-![image](http://img.blog.csdn.net/20160918202449560)
+![image](http://odsmd3jav.bkt.clouddn.com/GIF.gif)
 
 详细介绍，请查看：http://blog.csdn.net/zuiwuyuan/article/category/6422709
 
