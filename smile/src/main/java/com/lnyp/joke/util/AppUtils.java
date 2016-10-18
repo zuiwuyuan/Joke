@@ -16,9 +16,7 @@ import java.util.UUID;
 public class AppUtils {
 
     private AppUtils() {
-        /* cannot be instantiated */
         throw new UnsupportedOperationException("cannot be instantiated");
-
     }
 
     /**

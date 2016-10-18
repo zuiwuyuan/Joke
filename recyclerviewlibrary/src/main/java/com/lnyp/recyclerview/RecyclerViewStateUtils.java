@@ -6,9 +6,9 @@ import android.view.View;
 
 /**
  * Created by cundong on 2015/11/9.
- * <p>
+ * <p/>
  * 分页展示数据时，RecyclerView的FooterView State 操作工具类
- * <p>
+ * <p/>
  * RecyclerView一共有几种State：Normal/Loading/Error/TheEnd
  */
 public class RecyclerViewStateUtils {
@@ -35,11 +35,6 @@ public class RecyclerViewStateUtils {
         }
 
         HeaderAndFooterRecyclerViewAdapter headerAndFooterAdapter = (HeaderAndFooterRecyclerViewAdapter) outerAdapter;
-
-        //只有一页的时候，就别加什么FooterView了
-//        if (headerAndFooterAdapter.getInnerAdapter().getItemCount() < pageSize) {
-//            return;
-//        }
 
         if (!mHasMore) {
             return;

@@ -1,4 +1,4 @@
-package com.lnyp.joke;
+package com.lnyp.joke.activities;
 
 import android.app.Application;
 

@@ -78,7 +78,6 @@ public class JokeUtil {
                     }
                 }
 
-
                 Element tagwrap_clearfix_elements = list_item_element.select("div").get(3);
                 if (tagwrap_clearfix_elements != null) {
 

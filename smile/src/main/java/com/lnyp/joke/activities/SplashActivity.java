@@ -1,4 +1,4 @@
-package com.lnyp.joke;
+package com.lnyp.joke.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.google.gson.Gson;
+import com.lnyp.joke.R;
 import com.lnyp.joke.bean.UpgradeBean;
 import com.lnyp.joke.util.AppUtils;
 import com.lnyp.joke.widget.DialogUpdateInfo;

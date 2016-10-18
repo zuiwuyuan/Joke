@@ -1,4 +1,4 @@
-package com.lnyp.joke;
+package com.lnyp.joke.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.lnyp.joke.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.baoyz.widget.PullRefreshLayout;
 import com.lnyp.flexibledivider.HorizontalDividerItemDecoration;
-import com.lnyp.joke.PhotoActivity;
+import com.lnyp.joke.activities.PhotoActivity;
 import com.lnyp.joke.R;
 import com.lnyp.joke.adapter.JokeListAdapter;
 import com.lnyp.joke.http.HttpUtils;
@@ -61,9 +61,6 @@ public class QutuFragment extends Fragment {
     private boolean mHasMore = false;
 
     private boolean isRefresh = true;
-
-    private boolean isNetError = false;
-
 
     // 处理请求返回信息
     private MyHandler mHandler = new MyHandler();
@@ -222,7 +219,7 @@ public class QutuFragment extends Fragment {
                 JokeBean jokeBean = mDatas.get(pos);
                 String showImg = jokeBean.getDataBean().getShowImg();
                 String gifSrcImg = jokeBean.getDataBean().getGifsrcImg();
-//                System.out.println(showImg + "   " + gifSrcImg);
+
                 Intent intent = new Intent(getActivity(), PhotoActivity.class);
                 intent.putExtra("showImg", showImg);
                 intent.putExtra("gifSrcImg", gifSrcImg);

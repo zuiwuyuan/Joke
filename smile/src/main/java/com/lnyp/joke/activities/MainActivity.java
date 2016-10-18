@@ -1,4 +1,4 @@
-package com.lnyp.joke;
+package com.lnyp.joke.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.lnyp.joke.R;
 import com.lnyp.joke.fragment.MainFragment;
 import com.lnyp.joke.fragment.QutuFragment;
 import com.lnyp.joke.fragment.ShenHuifuFragment;

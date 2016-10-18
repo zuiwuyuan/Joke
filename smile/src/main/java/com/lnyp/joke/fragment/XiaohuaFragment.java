@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.baoyz.widget.PullRefreshLayout;
 import com.lnyp.flexibledivider.HorizontalDividerItemDecoration;
-import com.lnyp.joke.PhotoActivity;
+import com.lnyp.joke.activities.PhotoActivity;
 import com.lnyp.joke.R;
 import com.lnyp.joke.adapter.JokeListAdapter;
 import com.lnyp.joke.http.HttpUtils;
@@ -61,9 +61,6 @@ public class XiaohuaFragment extends Fragment {
 
     private boolean isRefresh = true;
 
-    private boolean isNetError = false;
-
-
     // 处理请求返回信息
     private MyHandler mHandler = new MyHandler();
 
@@ -106,12 +103,6 @@ public class XiaohuaFragment extends Fragment {
     private void initView() {
 
         mDatas = new ArrayList<>();
-
-//        List<JokeBean> inspirationSimples = MyApp.cache.inspirationSimples;
-
-//        if (inspirationSimples != null) {
-//            mDatas.addAll(inspirationSimples);
-//        }
 
         JokeListAdapter jokeListAdapter = new JokeListAdapter(this, mDatas, onClickListener);
         mAdapter = new HeaderAndFooterRecyclerViewAdapter(jokeListAdapter);

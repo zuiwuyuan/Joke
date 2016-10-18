@@ -153,9 +153,7 @@ public class SmartisanDrawable extends RefreshDrawable {
             // arrow
             canvas.save();
 
-//            canvas.translate(mCenterX, mCenterY);
             canvas.rotate(mMaxAngle * percent, mCenterX, mCenterY);
-//            canvas.translate(-mCenterX, -mCenterY);
 
             // left arrow
             canvas.drawLine(leftX, leftY, leftX - mArrowXSpace, leftY + mArrowYSpace, mPaint);

@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 
 import com.baoyz.widget.PullRefreshLayout;
 import com.lnyp.flexibledivider.HorizontalDividerItemDecoration;
-import com.lnyp.joke.PhotoActivity;
+import com.lnyp.joke.activities.PhotoActivity;
 import com.lnyp.joke.R;
 import com.lnyp.joke.adapter.JokeListAdapter;
 import com.lnyp.joke.http.HttpUtils;
@@ -60,7 +60,6 @@ public class MainFragment extends Fragment {
 
     private boolean isRefresh = true;
 
-
     // 处理请求返回信息
     private MyHandler mHandler = new MyHandler();
 
@@ -84,13 +83,9 @@ public class MainFragment extends Fragment {
         }
     }
 
-    public MainFragment() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         unbinder = ButterKnife.bind(this, view);
@@ -168,6 +163,7 @@ public class MainFragment extends Fragment {
                     if (jokeBeens != null) {
 
                         page++;
+
                         mHasMore = true;
 
                         if (isRefresh) {
@@ -223,8 +219,6 @@ public class MainFragment extends Fragment {
                 JokeBean jokeBean = mDatas.get(pos);
                 String showImg = jokeBean.getDataBean().getShowImg();
                 String gifSrcImg = jokeBean.getDataBean().getGifsrcImg();
-//
-//                System.out.println(showImg + "   " + gifSrcImg);
 
                 Intent intent = new Intent(getActivity(), PhotoActivity.class);
                 intent.putExtra("showImg", showImg);

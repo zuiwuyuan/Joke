@@ -108,8 +108,6 @@ public class HttpUtils {
                 }
                 baos.flush();
 
-//                System.out.print("str : " + baos.toString());
-
                 return baos.toString();
             } else {
                 throw new RuntimeException(" responseCode is not 200 ... ");
