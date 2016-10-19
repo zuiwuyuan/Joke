@@ -112,6 +112,7 @@ public class XiaohuaFragment extends Fragment {
         listInspirations.addItemDecoration(
                 new HorizontalDividerItemDecoration.Builder(getActivity())
                         .colorResId(R.color.divider_color)
+                        .size(20)
                         .build());
 
         listInspirations.addOnScrollListener(mOnScrollListener);

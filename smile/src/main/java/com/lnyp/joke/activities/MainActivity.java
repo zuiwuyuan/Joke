@@ -1,11 +1,14 @@
 package com.lnyp.joke.activities;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.lnyp.joke.R;
 import com.lnyp.joke.fragment.MainFragment;
@@ -36,6 +39,22 @@ public class MainActivity extends AppCompatActivity {
     private QutuFragment qutuFragment = null;
 
     private ShenHuifuFragment shenHuifuFragment = null;
+
+    // 定义一个变量，来标识是否退出
+    private static boolean enableExit = false;
+
+    // 处理请求返回信息
+    private MyHandler mHandler = new MyHandler();
+
+    private static class MyHandler extends Handler {
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what) {
+                case 0:
+                    enableExit = false;
+                    break;
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,5 +146,23 @@ public class MainActivity extends AppCompatActivity {
         if (shenHuifuFragment != null) {
             transaction.hide(shenHuifuFragment);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (!enableExit) {
+                enableExit = true;
+                Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                // 利用handler延迟发送更改状态信息
+                mHandler.sendEmptyMessageDelayed(0, 3000);
+            } else {
+                MainActivity.this.finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
