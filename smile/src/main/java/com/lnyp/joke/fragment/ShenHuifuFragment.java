@@ -1,6 +1,9 @@
 package com.lnyp.joke.fragment;
 
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
 import com.lnyp.flexibledivider.HorizontalDividerItemDecoration;
@@ -41,6 +45,8 @@ import butterknife.Unbinder;
 public class ShenHuifuFragment extends Fragment {
 
     private Unbinder unbinder;
+
+    private ClipboardManager clipboardManager;
 
     @BindView(R.id.rotateloading)
     public RotateLoading rotateloading;
@@ -92,6 +98,8 @@ public class ShenHuifuFragment extends Fragment {
 
         unbinder = ButterKnife.bind(this, view);
 
+        clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+
         initView();
 
         rotateloading.start();
@@ -104,7 +112,7 @@ public class ShenHuifuFragment extends Fragment {
 
         mDatas = new ArrayList<>();
 
-        JokeListAdapter jokeListAdapter = new JokeListAdapter(this, mDatas, onClickListener);
+        JokeListAdapter jokeListAdapter = new JokeListAdapter(this, mDatas, onClickListener, onLongClickListener);
         mAdapter = new HeaderAndFooterRecyclerViewAdapter(jokeListAdapter);
         listInspirations.setAdapter(mAdapter);
 
@@ -229,6 +237,25 @@ public class ShenHuifuFragment extends Fragment {
                 e.printStackTrace();
             }
 
+        }
+    };
+
+    private View.OnLongClickListener onLongClickListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View view) {
+
+            int pos = (int) view.getTag(R.string.app_name);
+            JokeBean jokeBean = mDatas.get(pos);
+
+            String content = jokeBean.getDataBean().getContent();
+
+            ClipData clip = ClipData.newPlainText("content", content);
+
+            clipboardManager.setPrimaryClip(clip);
+
+            Toast.makeText(getActivity(), "已复制", Toast.LENGTH_SHORT).show();
+
+            return true;
         }
     };
 

@@ -35,15 +35,19 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private View.OnClickListener onItemClick;
 
+    private View.OnLongClickListener onLongClickListener;
+
     private int screenWidth;
 
-    public JokeListAdapter(Fragment context, List<JokeBean> datas, View.OnClickListener onItemClick) {
+    public JokeListAdapter(Fragment context, List<JokeBean> datas, View.OnClickListener onItemClick, View.OnLongClickListener onLongClickListener) {
 
         this.mContext = context;
 
         this.mDatas = datas;
 
         this.onItemClick = onItemClick;
+
+        this.onLongClickListener = onLongClickListener;
 
         mInflater = LayoutInflater.from(context.getActivity());
 
@@ -143,12 +147,11 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 viewHolder.layoutTags.setVisibility(View.GONE);
             }
 
-//            viewHolder.itemView.setTag(position);
-//            viewHolder.itemView.setOnClickListener(onItemClick);
-
-//            viewHolder.imgJoke.setTag(position);
             viewHolder.imgJoke.setTag(R.string.app_name, position);
             viewHolder.imgJoke.setOnClickListener(onItemClick);
+
+            viewHolder.textContent.setTag(R.string.app_name, position);
+            viewHolder.textContent.setOnLongClickListener(onLongClickListener);
         }
     }
 
