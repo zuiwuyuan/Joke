@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:singleLine="true"
         android:text="title title title tiltle title"
         android:textColor="#333333"
@@ -95,7 +95,7 @@
         android:layout_marginBottom="2dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="14dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:gravity="right"
         android:orientation="horizontal">
 
