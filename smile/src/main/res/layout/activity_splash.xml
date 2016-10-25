@@ -13,6 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="4dp"
         android:text="数据来源：http://www.pengfu.com/"
+        android:visibility="gone"
         android:textColor="#333333"
         android:textSize="14sp" />
 
