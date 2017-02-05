@@ -71,7 +71,11 @@ public class JokeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         JokeBean jokeBean = mDatas.get(position);
 
+
+
         if (jokeBean != null) {
+
+            System.out.println(jokeBean);
 
             Glide.with(mContext)
                     .load(jokeBean.getUserAvatar())

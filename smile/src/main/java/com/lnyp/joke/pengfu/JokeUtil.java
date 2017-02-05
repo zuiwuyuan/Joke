@@ -25,7 +25,6 @@ public class JokeUtil {
 
                 JokeBean jokeBean = new JokeBean();
 
-
                 Element list_item_element = list_item_elements.get(i);
 
                 Elements head_name_elements = list_item_element.select("div.head-name");
@@ -42,14 +41,28 @@ public class JokeUtil {
 
                         jokeBean.setUserName(userName);
                         jokeBean.setUserAvatar(userAvatar);
-                        jokeBean.setTitle(title);
+//                        jokeBean.setTitle(title);
                         jokeBean.setLastTime(lastTime);
 
                         jokeBean.setShareUrl(shareUrl);
                     }
                 }
 
-                Element con_img_elements = list_item_element.select("div").get(2);
+
+//                <div class="humorListTitle">
+//                <h1 class="f18"><a href="http://m.pengfu.com/content/1629362/" title="熊孩子告诉我们猫步是怎么炼成的">熊孩子告诉我们猫步是怎么炼成的</a></h1>
+//                </div>
+
+                Element humorListTitle = list_item_element.getElementsByClass("humorListTitle").first();
+                if (humorListTitle != null) {
+                    if (humorListTitle.select("a") != null) {
+                        String imgTitle = humorListTitle.select("a").text();
+                        jokeBean.setTitle(imgTitle);
+                    }
+
+                }
+
+                Element con_img_elements = list_item_element.getElementsByClass("con-img").first();
                 if (con_img_elements != null) {
                     if (con_img_elements.select("img") != null) {
 
@@ -78,7 +91,7 @@ public class JokeUtil {
                     }
                 }
 
-                Element tagwrap_clearfix_elements = list_item_element.select("div").get(3);
+                Element tagwrap_clearfix_elements = list_item_element.select("div").get(4);
                 if (tagwrap_clearfix_elements != null) {
 
                     Elements clearfixs = tagwrap_clearfix_elements.select("a[href]"); //带有href属性的a元素
