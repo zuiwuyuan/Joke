@@ -16,7 +16,7 @@ import java.net.URL;
  */
 public class HttpUtils {
 
-    private static final int TIMEOUT_IN_MILLIONS = 5000;
+    private static final int TIMEOUT_IN_MILLIONS = 10000;
 
     public interface CallBack {
         void onRequestComplete(String result);
